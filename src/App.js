@@ -1,24 +1,23 @@
 import React, { Component } from 'react';
-import styles from './App.pcss';
-import { Link } from 'react-router-dom';
-import CSSModules from 'react-css-modules';
+import { Route, Switch } from 'react-router';
+import asyncRoute from './asyncRoute';
+import { withRouter } from 'react-router-dom';
+
+// import Home from './components/Home';
+const Home = asyncRoute(() => import('./components/Home'));
+const Test = asyncRoute(() => import('./components/Test'));
 
 class App extends Component {
     render() {
         return (
-            <div styleName="app">
-                <div styleName="header">
-                  <h2>Welcome to React</h2>
-                </div>
-                <p styleName="intro">
-                  To get started, edit <code>src/App.js</code> and save to reload.
-                  <Link to="/test">test</Link>
-                </p>
-            </div>
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route path="/test" component={Test}/>
+            </Switch>
         );
     }
 }
 
-App = CSSModules(App, styles);
+App = withRouter(App);
 
 export default App;

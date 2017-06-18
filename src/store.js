@@ -24,7 +24,7 @@ const store = createStore(
     // root reducer
     reducer,
     // initial state
-    {},
+    undefined,
     // middlewares
     compose(...toCompose)
 );

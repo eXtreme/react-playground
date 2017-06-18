@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
-import { Route } from 'react-router';
-import { ConnectedRouter, push } from 'react-router-redux';
+import { ConnectedRouter } from 'react-router-redux';
 import history from './history';
 import store from './store';
 
 import App from './App';
-import Test from './Test';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
 /*
@@ -27,13 +24,10 @@ if (
 ReactDOM.render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <div>
-                <Route exact path="/" component={App}/>
-                <Route path="/test" component={Test}/>
-            </div>
+            <App />
         </ConnectedRouter>
     </Provider>, document.getElementById('root'));
 
-// Temporarily, use this, we need to test the impact of this on production.
-registerServiceWorker();
+// Temporarily, do not use this, we need to test the impact of this on production.
+// registerServiceWorker();
 
